@@ -1,18 +1,20 @@
 <!--- Heading --->
 <div align="center">
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
-  <h1>Template README</h1>
+  <img src="assets/logo.jpg" alt="logo" width="200" height="auto" /><br>
+  <a style="font-size:50%;" href="https://www.freepik.com/vectors/steel-rod">Steel rod vector created by upklyak - www.freepik.com</a>
+  
+  <h1>Development length Calculator</h1>
   <p>
-    An awesome README template for your projects! 
+    Rebar development length calculator is a web application that calculates the necessary tension and compression development lengths required in accordance with CSA A23.3-19.
   </p>
 <h4>
-    <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
+    <a href="assets\output.gif">View Demo</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template">Documentation</a>
+    <a href="https://github.com/rpakishore/Stru-Development-length">Documentation</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Report Bug</a>
+    <a href="mailto:rpakishore@gmail.com?subject=[BUG_Development-length]">Report Bug</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Request Feature</a>
+    <a href="mailto:rpakishore@gmail.com?subject=[REQ_Development-length]">Request Feature</a>
   </h4>
 </div>
 <br />
@@ -23,12 +25,9 @@
 - [1. About the Project](#1-about-the-project)
   - [1.1. Screenshots](#11-screenshots)
   - [1.2. Features](#12-features)
-  - [1.3. Color Reference](#13-color-reference)
-  - [1.4. Environment Variables](#14-environment-variables)
 - [2. Getting Started](#2-getting-started)
   - [2.1. Prerequisites](#21-prerequisites)
   - [2.2. Dependencies](#22-dependencies)
-  - [2.3. Installation](#23-installation)
 - [3. Usage](#3-usage)
 - [4. Other Functions](#4-other-functions)
   - [4.1. update_requirements.py](#41-update_requirementspy)
@@ -44,40 +43,23 @@
 ### 1.1. Screenshots
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="assets\output.gif" alt="screenshot" />
 </div>
 
 <!-- Features -->
 ### 1.2. Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Hooked tension development length
+- Compression development length [Pending]
+- Tension development length [Pending]
 
-<!-- Color Reference -->
-### 1.3. Color Reference
-
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
-
-<!-- Env Variables -->
-### 1.4. Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
 
 <!-- Getting Started -->
 ## 2. Getting Started
 
 <!-- Prerequisites -->
 ### 2.1. Prerequisites
+Python 3.7 or above
 
 ### 2.2. Dependencies
 Create the virutual environment and install dependencies
@@ -90,27 +72,14 @@ venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
-<!-- Installation -->
-### 2.3. Installation
-
-Install my-project with npm
-
-```bash
-  yarn install my-project
-  cd my-project
-```
 <!-- Usage -->
 ## 3. Usage
 
 Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
 
 
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
+```powershell
+python -m streamlit run About.py
 ```
 ## 4. Other Functions
 ### 4.1. update_requirements.py
@@ -132,13 +101,14 @@ Inorder to ensure that all the `pip` commands are found. ensure that every time 
 <!-- Roadmap -->
 ## 5. Roadmap
 
-* [x] Set up a skeletal framework
-* [ ] Todo 2
+* [x] Hooked development length
+* [ ] Tension development length
+* [ ] Compression development length
 
 <!-- FAQ -->
 ## 6. FAQ
-- Question 1
-  + Answer 1
+- Can I save this to PDF
+  + Yes! Simply hide the sidebar and use `Ctrl + P` to print the document to PDF.
 
 - Question 2
   + Answer 2
@@ -152,7 +122,7 @@ Distributed under the no License. See LICENSE.txt for more information.
 
 Arun Kishore - [@rpakishore](mailto:rpakishore@gmail.com)
 
-Project Link: [https://github.com/rpakishore/](https://github.com/rpakishore/)
+Project Link: [https://github.com/rpakishore/Stru-Development-length](https://github.com/rpakishore/Stru-Development-length)
 
 
 <!-- Acknowledgments -->
