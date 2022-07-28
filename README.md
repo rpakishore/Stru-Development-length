@@ -10,7 +10,7 @@
 <h4>
     <a href="assets\output.gif">View Demo</a>
   <span> · </span>
-    <a href="https://github.com/rpakishore/Stru-Development-length">Documentation</a>
+    <a href="https://github.com/rpakishore/Stru-Development-length/blob/main/README.md">Documentation</a>
   <span> · </span>
     <a href="mailto:rpakishore@gmail.com?subject=[BUG_Development-length]">Report Bug</a>
   <span> · </span>
@@ -50,8 +50,8 @@
 ### 1.2. Features
 
 - Hooked tension development length
-- Compression development length [Pending]
-- Tension development length [Pending]
+- Compression development length
+- Tension development length
 
 
 <!-- Getting Started -->
@@ -102,17 +102,13 @@ Inorder to ensure that all the `pip` commands are found. ensure that every time 
 ## 5. Roadmap
 
 * [x] Hooked development length
-* [ ] Tension development length
-* [ ] Compression development length
+* [x] Tension development length
+* [x] Compression development length
 
 <!-- FAQ -->
 ## 6. FAQ
 - Can I save this to PDF
   + Yes! Simply hide the sidebar and use `Ctrl + P` to print the document to PDF.
-
-- Question 2
-  + Answer 2
-
 <!-- License -->
 ## 7. License
 Distributed under the no License. See LICENSE.txt for more information.
