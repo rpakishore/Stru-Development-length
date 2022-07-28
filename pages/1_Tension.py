@@ -94,13 +94,13 @@ with left_column:
     input['ties'] = st.checkbox(
         label="Member contains minimum ties per Cl. 7.6.5",
         value=input['ties'],
-        help="Cl.7.6.5",
+        help="`Ties for compression members`",
         key='ties')
 
     input['stirrups'] = st.checkbox(
         label="Member contains minimum stirrups within ld per Cl. 11.2.8.2",
         value=input['stirrups'],
-        help="Cl.11.2.8.2",
+        help="`Minimum shear reinforcement` & `Torsion consideration`",
         key='stirrups')
 
     input['case3'] = st.checkbox(
