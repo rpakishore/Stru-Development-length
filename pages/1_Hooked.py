@@ -1,7 +1,12 @@
+from distutils.command import upload
+from types import new_class
+from requests import session
 import streamlit as st
 from handcalcs.decorator import handcalc
 from math import sqrt
 import pandas as pd
+from datetime import datetime
+import json
 
 input = {
     'fc': 25,
@@ -12,8 +17,10 @@ input = {
     '3_stirrups': True,
     'epoxy_bars': False,
     'Normal_density': True,
-    'Hook': 1
+    'Hook': 0
 }
+
+
 bar_df = pd.DataFrame({
     'bars': ['10M', '15M', '20M', '25M', '30M', '35M', '45M', '55M'],
     'size': [11.3, 16, 19.5, 25.2, 29.9, 35.7, 43.7, 56.4],
@@ -25,30 +32,39 @@ bar_df = pd.DataFrame({
 st.header("Development of standard hooks in tension | Cl. 12.5")
 # <!-----Inputs------>
 st.subheader("Inputs")
+
 left_column, right_column = st.columns(2)
+
+for key in input.keys():
+    if not key in st.session_state:
+        st.session_state[key] = input[key]
+
 with left_column:
-    input['fc'] = st.slider("Concrete compressive Strength (f'c)", 5, 60, input['fc'],5, help="Clause 12.1.2 limits the max. concrete strength to 64MPa")
-
-    input['fy'] = st.slider("Steel tensile Strength (fy)", 300, 500, input['fy'], 50)
-
+    input['fc'] = st.slider(
+        label="Concrete compressive Strength (f'c)", min_value=5, max_value=60, value=input['fc'],
+        step=5, help="Clause 12.1.2 limits the max. concrete strength to 64MPa",
+        key='fc')
+    st.write(st.session_state['fc'])
+    input['fy'] = st.slider(label="Steel tensile Strength (fy)", min_value=300, max_value=500, value=input['fy'], step=50)
+    st.write(st.session_state['fy'])
     options = list(bar_df['bars'])
     input['bar'] = st.selectbox('Bar size',options,index=input['bar'],)
     input['bar'] = options.index(input['bar'])
 
     options = ('180°', '90°')
-    input['Hook'] = st.selectbox('Hook type',options, index=input['Hook'])
+    input['Hook'] = st.selectbox('Hook type',options, index=input['Hook'], key='Hook')
     input['Hook'] = options.index(input['Hook'])
 
 with right_column:
     st.write("**Options**")
-    input['side_cover'] = st.checkbox("Side cover < 60mm", input['side_cover'], help="side cover (normal to plane of hook) is less than 60mm")
-    input['tail_cover'] = st.checkbox("Tail cover > 50mm", input['tail_cover'], help="For 90° hooks, cover on bar extension beyond the hook is not less than 50mm")
-    input['3_stirrups'] = st.checkbox("Atleast 3 stirrups or ties", input['3_stirrups'], help=f"Hook is enclosed vertically/horizontally within 3 ties/stirrups spaced along a length of > {int(bar_df['hook dia'][input['bar']])} mm and a spacing <= {round(bar_df['size'][input['bar']]*3,1)} mm")
-    input['epoxy_bars'] = st.checkbox("Epoxy coated bars", input['epoxy_bars'])
-    input['Normal_density'] = st.checkbox("Normal-density concrete", input['Normal_density'])
-
+    input['side_cover'] = st.checkbox("Side cover < 60mm", input['side_cover'], help="side cover (normal to plane of hook) is less than 60mm", key='side_cover')
+    input['tail_cover'] = st.checkbox("Tail cover > 50mm", input['tail_cover'], help="For 90° hooks, cover on bar extension beyond the hook is not less than 50mm", key='tail_cover')
+    input['3_stirrups'] = st.checkbox("Atleast 3 stirrups or ties", input['3_stirrups'], help=f"Hook is enclosed vertically/horizontally within 3 ties/stirrups spaced along a length of > {int(bar_df['hook dia'][input['bar']])} mm and a spacing <= {round(bar_df['size'][input['bar']]*3,1)} mm", key='3_stirrups')
+    input['epoxy_bars'] = st.checkbox("Epoxy coated bars", input['epoxy_bars'], key='epoxy_bars')
+    input['Normal_density'] = st.checkbox("Normal-density concrete", input['Normal_density'], key='Normal_density')
 
 # <!-----Functions------>
+
 # <!-----Handcalc functions------>
 @handcalc(precision=1)
 def calculation_steps(k_1,k_2,k_3,k_4,d_b,f_prime_c,f_y):
@@ -133,6 +149,11 @@ def k2(input):
     comment += "\ |\ Cl. 12.5.3.c"
     return k_2, comment
 
+def update_inputs():
+    for key in input.keys():
+        st.session_state[key] = new_input[key]
+    return
+
 # <!-----Calculations------>
 k_1, k_1_comment = k1(input)
 k_2, k_2_comment = k2(input)
@@ -172,3 +193,30 @@ st.latex("k_{2} =" + str(k_2) +"\ (" + k_2_comment + ")")
 st.latex("k_{3} =" + str(k_3) +"\ (" + k_3_comment + ")")
 st.latex("k_{4} =" + str(k_4) +"\ (" + k_4_comment + ")")
 st.latex(calculation_latex)
+
+st.write(st.session_state)
+_, middle_column,_ = st.columns(3)
+with middle_column:
+    uploaded_file = st.file_uploader(
+        label="Upload variables",
+        type = "json",
+        help="Import previously used variables",
+        accept_multiple_files=False
+    )
+    if uploaded_file is not None:
+        bytes_data = uploaded_file.getvalue()
+        new_input = json.load(uploaded_file)
+
+
+    st.button(
+        label="Update",
+        on_click=update_inputs
+        )
+
+with middle_column:
+    st.download_button(
+        label="Export Variables",
+        help="Export the variables for above",
+        file_name=f"Hooked_dev_length_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json",
+        mime="application/json",
+        data=json.dumps(input, indent=4))
