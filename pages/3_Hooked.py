@@ -1,6 +1,3 @@
-from distutils.command import upload
-from types import new_class
-from requests import session
 import streamlit as st
 from handcalcs.decorator import handcalc
 from math import sqrt

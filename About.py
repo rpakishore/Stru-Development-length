@@ -8,7 +8,7 @@ st.write("# Development length calculator")
 st.write("""
 ### Purpose
 - This is a web application that calculates the necessary tension and compression development lengths.
-- All calculations are in accordance with CSA A23.3-14; Cl.12.
+- All calculations are in accordance with CSA A23.3-19; Cl.12.
 
 ### Disclaimer
 Although this calculator has been formally checked for technical correctness, it is not a substitute for engineering judgement, and does not relieve users of their duty to conduct required checking and quality control procedures.
@@ -16,7 +16,7 @@ Although this calculator has been formally checked for technical correctness, it
 ### References
 | S. No. | Reference | Year|
 |--------|-----------|-----|
-| 1. | CSA A23.3; Cl.12 | 2014|
+| 1. | CSA A23.3; Cl.12 | 2019|
 
 ### Color reference
 | Color             | Legend                                                                |
