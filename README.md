@@ -81,6 +81,8 @@ Use this space to tell a little more about your project and how it can be used. 
 ```powershell
 python -m streamlit run About.py
 ```
+
+Alternatively, You can checkout the script hosted on streamlit.io [here](https://rpakishore-stru-development-length-about-vpt3t6.streamlitapp.com/).
 ## 4. Other Functions
 ### 4.1. update_requirements.py
 ```bash
