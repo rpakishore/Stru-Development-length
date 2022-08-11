@@ -116,6 +116,7 @@ def update_inputs():
     for key in input.keys():
         st.session_state[key] = input[key]
     return
+
 # <!-----Heading------>
 st.header("Development of standard hooks in tension | Cl. 12.5")
 # <!-----Inputs------>
@@ -124,7 +125,7 @@ st.subheader("Inputs")
 left_column, right_column = st.columns(2)
 
 for key in input.keys():
-    if not key in st.session_state:
+    if key not in st.session_state:
         st.session_state[key] = input[key]
 
 with left_column:
@@ -132,7 +133,6 @@ with left_column:
         label="Concrete compressive Strength (f'c)", 
         min_value=5, 
         max_value=60, 
-        value=input['fc'],
         step=5, 
         help="Clause 12.1.2 limits the max. concrete strength to 64MPa",
         key='fc')
@@ -141,14 +141,12 @@ with left_column:
         label="Steel tensile Strength (fy)", 
         min_value=300, 
         max_value=500, 
-        value=input['fy'], 
         step=50, 
         key='fy')
 
     options = tuple(bar_df['bars'])
     input['bar'] = st.selectbox(label='Bar size',
                                 options=options,
-                                index=options.index(input['bar']),
                                 key='bar')
     if type(input['bar']) == int:
         input['bar'] = options[input['bar']]
@@ -156,7 +154,6 @@ with left_column:
     options = ('180°', '90°')
     input['Hook'] = st.selectbox(label='Hook type',
                                  options=options, 
-                                 index=options.index(input['Hook']), 
                                  key='Hook')
     if type(input['Hook']) == int:
         input['Hook'] = options[input['Hook']]
@@ -164,22 +161,17 @@ with left_column:
 with right_column:
     st.write("**Options**")
     input['side_cover'] = st.checkbox(label="Side cover < 60mm",
-                                      value=input['side_cover'], 
                                       help="side cover (normal to plane of hook) is less than 60mm", 
                                       key='side_cover')
     input['tail_cover'] = st.checkbox(label="Tail cover > 50mm", 
-                                      value=input['tail_cover'], 
                                       help="For 90° hooks, cover on bar extension beyond the hook is not less than 50mm", 
                                       key='tail_cover')
     input['3_stirrups'] = st.checkbox(label="Atleast 3 stirrups or ties", 
-                                      value=input['3_stirrups'], 
                                       help=f"Hook is enclosed vertically/horizontally within 3 ties/stirrups spaced along a length of > {int(bar_df[bar_df['bars']==input['bar']]['hook dia'].iloc[0])} mm and a spacing <= {round(bar_df[bar_df['bars']==input['bar']]['size'].iloc[0]*3,1)} mm", 
                                       key='3_stirrups')
     input['epoxy_bars'] = st.checkbox(label="Epoxy coated bars", 
-                                      value=input['epoxy_bars'], 
                                       key='epoxy_bars')
     input['Normal_density'] = st.checkbox(label="Normal-density concrete", 
-                                          value=input['Normal_density'], 
                                           key='Normal_density')
     
     uploaded_file = st.file_uploader(

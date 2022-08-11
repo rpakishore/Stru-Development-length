@@ -59,7 +59,7 @@ st.header("Tension development length | Cl. 12.2")
 st.subheader("Inputs")
 
 for key in input.keys():
-    if not key in st.session_state:
+    if key not in st.session_state:
         st.session_state[key] = input[key]
 
 left_column, right_column = st.columns(2)
@@ -67,8 +67,7 @@ with left_column:
     input['fc'] = st.slider(
         label="Concrete compressive Strength (f'c)", 
         min_value=5, 
-        max_value=60, 
-        value=input['fc'],
+        max_value=60,
         step=5, 
         help="Clause 12.1.2 limits the max. concrete strength to 64MPa",
         key='fc')
@@ -77,14 +76,12 @@ with left_column:
         label="Steel tensile Strength (fy)", 
         min_value=300, 
         max_value=500, 
-        value=input['fy'], 
         step=50, 
         key='fy')
 
     options = tuple(bar_df['bars'])
     input['bar'] = st.selectbox(label='Bar size',
                                 options=options,
-                                index=options.index(input['bar']),
                                 key='bar')
     if type(input['bar']) == int:
         input['bar'] = options[input['bar']]
@@ -93,19 +90,16 @@ with left_column:
     st.write("**Cases**")
     input['ties'] = st.checkbox(
         label="Member contains minimum ties per Cl. 7.6.5",
-        value=input['ties'],
         help="`Ties for compression members`",
         key='ties')
 
     input['stirrups'] = st.checkbox(
         label="Member contains minimum stirrups within ld per Cl. 11.2.8.2",
-        value=input['stirrups'],
         help="`Minimum shear reinforcement` & `Torsion consideration`",
         key='stirrups')
 
     input['case3'] = st.checkbox(
         label=f"Slabs, walls, shells or folded plates w/ clear spacing > {int(d_b*2)}mm between bars being developed",
-        value=input['case3'],
         key='case3')
 
 
@@ -114,7 +108,6 @@ with right_column:
     st.markdown("**Bar location factor (k1)**")
     input['bar_location_factor'] = st.checkbox(
         label=f"Hoirz. reinf. placed w/ more than 300mm of fresh concrete is cast in the member below",
-        value=input['bar_location_factor'],
         key='bar_location_factor')
 
     st.markdown("**Coating Factor (k2)**")
@@ -125,7 +118,6 @@ with right_column:
     input['coating_factor'] = st.radio(
         label = "Choose one of the following:",
         options = coating_options,
-        index=coating_options.index(input['coating_factor']),
         key="coating_factor")
 
     st.markdown("**Concrete Density Factor (k3)**")
@@ -136,7 +128,6 @@ with right_column:
     input['density_factor'] = st.radio(
         label = "Choose one of the following:",
         options = density_options,
-        index=density_options.index(input['density_factor']),
         key="density_factor")
 
 # <!-----Calculations------>

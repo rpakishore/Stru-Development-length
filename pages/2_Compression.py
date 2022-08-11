@@ -45,14 +45,13 @@ st.header("Compression development length | Cl. 12.3")
 st.subheader("Inputs")
 
 for key in input.keys():
-    if not key in st.session_state:
+    if key not in st.session_state:
         st.session_state[key] = input[key]
 
 input['fc'] = st.slider(
     label="Concrete compressive Strength (f'c)", 
     min_value=5, 
     max_value=60, 
-    value=input['fc'],
     step=5, 
     help="Clause 12.1.2 limits the max. concrete strength to 64MPa",
     key='fc')
@@ -61,26 +60,22 @@ input['fy'] = st.slider(
     label="Steel tensile Strength (fy)", 
     min_value=300, 
     max_value=500, 
-    value=input['fy'], 
     step=50, 
     key='fy')
 
 options = tuple(bar_df['bars'])
 input['bar'] = st.selectbox(label='Bar size',
                             options=options,
-                            index=options.index(input['bar']),
                             key='bar')
 if type(input['bar']) == int:
     input['bar'] = options[input['bar']]
 
 input['spiral'] = st.checkbox(
     label="Reinforcement enclosed within spiral rebar > Ø6mm and <100mm pitch",
-    value=input['spiral'],
     key='spiral')
 
 input['10M'] = st.checkbox(
     label = "Reinforcement enclosed within 10M ties in compliance with Cl. 7.6.5 and spaced < 100mm",
-    value=input['10M'],
     key=['10M'],
     help="Cl. 7.6.5 refers to `Ties for compression members`"
 )
