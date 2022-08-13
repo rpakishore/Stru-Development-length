@@ -202,3 +202,14 @@ st.latex(k_3_latex)
 st.latex(k_4_latex)
 st.latex(calc_latex)
 st.latex("l_{d}="+ str(int(calc_value['l_d'])) + '\ mm')
+
+# ---- HIDE STREAMLIT STYLE ----
+
+hide_st_style = """
+                <style>
+                #MainMenu{visibility: hidden;}
+                footer{visibility: hidden;}
+                header{visibility: hidden;}
+                </style>
+                """
+st.markdown(hide_st_style,unsafe_allow_html = True)  

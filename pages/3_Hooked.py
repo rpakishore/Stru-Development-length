@@ -241,3 +241,14 @@ with middle_column:
         file_name=f"Hooked_dev_length_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json",
         mime="application/json",
         data=json.dumps(input, indent=4))
+
+# ---- HIDE STREAMLIT STYLE ----
+
+hide_st_style = """
+                <style>
+                #MainMenu{visibility: hidden;}
+                footer{visibility: hidden;}
+                header{visibility: hidden;}
+                </style>
+                """
+st.markdown(hide_st_style,unsafe_allow_html = True)  
