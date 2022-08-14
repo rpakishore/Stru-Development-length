@@ -13,6 +13,13 @@ st.write("""
 ### Disclaimer
 Although this calculator has been formally checked for technical correctness, it is not a substitute for engineering judgement, and does not relieve users of their duty to conduct required checking and quality control procedures.
 
+### Features
+- [x] Simplified development length calculation
+    - [x] Tension
+    - [x] Compression
+    - [x] Hooked
+- [ ] General development length calculation
+
 ### References
 | S. No. | Reference | Year|
 |--------|-----------|-----|
