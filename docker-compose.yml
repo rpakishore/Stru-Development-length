@@ -1,7 +1,7 @@
 ---
 version: "2.1"
 services:
-  jiosaavn:
+  devlength:
     image: dev_length:minimal
     container_name: devlength
     #ports:
