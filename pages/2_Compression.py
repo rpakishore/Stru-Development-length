@@ -4,7 +4,31 @@ from math import sqrt
 import pandas as pd
 from datetime import datetime
 import json
+#Remove Extra Padding from all sides of the page and top/bottom of sidebar
+st.markdown("""
+            <style>
+                .css-12oz5g7 {
+                    padding-top: 0rem;
+                    padding-bottom: 0rem;
+                    padding-left: 0rem;
+                    padding-right: 0rem;
+                }
+                .css-uc76bn{
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;
+                }
+            </style>""", unsafe_allow_html=True) 
 
+# ---- HIDE STREAMLIT STYLE ----
+
+hide_st_style = """
+                <style>
+                #MainMenu{visibility: hidden;}
+                footer{visibility: hidden;}
+                header{visibility: hidden;}
+                </style>
+                """
+st.markdown(hide_st_style,unsafe_allow_html = True) 
 
 input = {
     'fc': 25,
@@ -104,14 +128,3 @@ st.subheader("Calculation")
 st.latex(basic_dev_latex)
 st.latex(modification_latex)
 st.latex(result_latex)
-
-# ---- HIDE STREAMLIT STYLE ----
-
-hide_st_style = """
-                <style>
-                #MainMenu{visibility: hidden;}
-                footer{visibility: hidden;}
-                header{visibility: hidden;}
-                </style>
-                """
-st.markdown(hide_st_style,unsafe_allow_html = True)  
