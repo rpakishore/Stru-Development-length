@@ -200,21 +200,21 @@ with right_column:
     input['Normal_density'] = st.checkbox(label="Normal-density concrete", 
                                           key='Normal_density')
     
-    uploaded_file = st.file_uploader(
-        label="Upload variables",
-        type = "json",
-        help="Import previously used variables",
-        accept_multiple_files=False
-    )
-    if uploaded_file is not None:
-        bytes_data = uploaded_file.getvalue()
-        input = json.load(uploaded_file)
+    # uploaded_file = st.file_uploader(
+    #     label="Upload variables",
+    #     type = "json",
+    #     help="Import previously used variables",
+    #     accept_multiple_files=False
+    # )
+    # if uploaded_file is not None:
+    #     bytes_data = uploaded_file.getvalue()
+    #     input = json.load(uploaded_file)
 
-        st.button(
-            label="Update",
-            on_click=update_inputs,
-            key="update_button"
-            )
+    #     st.button(
+    #         label="Update",
+    #         on_click=update_inputs,
+    #         key="update_button"
+    #         )
         
 # <!-----Calculations------>
 k_1, k_1_comment = k1(input)
@@ -256,14 +256,14 @@ st.latex("k_{3} =" + str(k_3) +"\ (" + k_3_comment + ")")
 st.latex("k_{4} =" + str(k_4) +"\ (" + k_4_comment + ")")
 st.latex(calculation_latex)
 
-#st.write(st.session_state)
-_, middle_column,_ = st.columns(3)
+# #st.write(st.session_state)
+# _, middle_column,_ = st.columns(3)
 
 
-with middle_column:
-    st.download_button(
-        label="Export Variables",
-        help="Export the variables for above",
-        file_name=f"Hooked_dev_length_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json",
-        mime="application/json",
-        data=json.dumps(input, indent=4))
+# with middle_column:
+#     st.download_button(
+#         label="Export Variables",
+#         help="Export the variables for above",
+#         file_name=f"Hooked_dev_length_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json",
+#         mime="application/json",
+#         data=json.dumps(input, indent=4))
