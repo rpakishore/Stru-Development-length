@@ -2,8 +2,10 @@
 version: "2.1"
 services:
   devlength:
-    image: dev_length:minimal
-    container_name: devlength
+    image: ${NAME}:latest
+    container_name: ${NAME}
+    env_file:
+      - ./EDIT.env
     #ports:
     #  - 9000:8501
     restart: unless-stopped
