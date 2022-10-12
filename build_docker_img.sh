@@ -1,2 +1,3 @@
-docker build -t dev_length:minimal .
+export $(grep -v '^#' EDIT.env | xargs)
+docker build -t ${NAME}:latest .
 docker-compose up -d
